@@ -1,0 +1,15 @@
+<form class="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">{% unless product %}{% assign product = page %}{% endunless %}
+  <span>{{ product.cost }}</span>
+
+  <label>
+    <span class="sr-only">Number</span>
+
+    <select name="quantity">{% for quantity in (1..10) %}
+      <option value="{{ quantity }}">{{ quantity }}</option>{% endfor %}
+    </select>
+  </label>
+
+  <input name="cmd" type="hidden" value="_s-xclick" />
+  <input name="hosted_button_id" type="hidden" value="{{ product.paypal_id }}" />
+  <input name="submit" type="submit" value="Add to Cart" />
+</form>

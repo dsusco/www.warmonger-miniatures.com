@@ -1,0 +1,17 @@
+---
+layout: page
+---
+{{content}}
+
+<div class="small margin-bottom">
+  <div>Posted by {{ page.author }} at {{ page.date | date: '%I:%M%p' }}</div>
+
+  <ul class="tag-links">{% for tag in page.tags %}
+    <li>{% breadcrumb site.data.tags[tag] %}</li>{% endfor %}
+  </ul>
+</div>
+
+<div class="pager">{% if page.next %}
+  <a class="button outline next" href="{{ page.next.url }}" title="{{ page.next.title }}">Next</a>{% endif %}{% if page.previous %}
+  <a class="button outline previous" href="{{ page.previous.url }}" title="{{ page.previous.title }}">Previous</a>{% endif %}
+</div>

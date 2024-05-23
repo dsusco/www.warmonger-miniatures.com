@@ -1,0 +1,28 @@
+---
+layout: page
+---
+<div class="product">
+  <div class="product-content">
+  {{ content }}
+
+  {% include paypal_form.html %}
+  </div>
+
+  <div class="slideshow">{% for image in page.images %}
+    {% include image_card.html image = image %}{% endfor %}
+  </div>
+</div>
+
+{% unless page.no_shared_images %}<div class="shared-images">
+  <div class="images">{% for image in page.shared_images %}
+    <a href="{{ image.secure_url | cloudinary_transformation: 'w_800,h_600,c_fit' }}" data-modal-title="{{ image.context.custom.caption }}" data-modal-title-url="{{ image.context.custom.URL }}"><img alt="{{ page.title }} by {{ image.context.custom.caption }}" src="{{ image.secure_url | cloudinary_transformation: 'w_160,h_120,c_fit' }}" /></a>{% endfor %}
+  </div>
+
+  <p class="content">
+    <span>
+      Share your miniatures with other discerning Warmasters!
+      <br>
+      Tag your Instagram posts with <b>#PaintingWarmonger</b> (or <a href="/picture-submission/form.html">submit via our form</a>) and you may see them here.
+    </span>
+  </p>
+</div>{% endunless %}
